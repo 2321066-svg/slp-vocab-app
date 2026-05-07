@@ -60,7 +60,7 @@ if search_option == "직접 입력":
 else:
     target_word = st.selectbox("단어를 선택하세요:", ["선택하세요"] + list(word_db.keys()))
 
-if st.button("AI 선생님 설명 보기"):
+if st.button("선생님 설명 보기"):
     if target_word in word_db:
         data = word_db[target_word]
         st.success(f"### 🔍 {target_word}")
