@@ -1,0 +1,20 @@
+# app.py 파일 내용
+import streamlit as st
+import google.generativeai as genai
+
+# Gemini 설정
+genai.configure(api_key="본인의_API_키_입력") # 실제 배포시는 st.secrets 사용 권장
+model = genai.GenerativeModel('gemini-1.5-flash')
+
+st.title("🐥 아이들을 위한 쉬운 단어 사전")
+
+word = st.text_input("설명이 필요한 어려운 단어를 입력하세요:")
+
+if st.button("AI 선생님께 물어보기"):
+    if word:
+        prompt = f"너는 언어치료사야. '{word}'라는 단어를 7세 아이가 이해할 수 있게 아주 쉬운 비유로 설명해주고, 일상생활 예문을 하나 만들어줘."
+        response = model.generate_content(prompt)
+        
+        st.success(f"### {word}란?")
+        st.write(response.text)
+        st.balloons()
